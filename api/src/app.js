@@ -5,9 +5,8 @@ const app = express();
 
 app.use(morgan('dev'));
 
-app.use((req, res, next) => {
-    console.log('Hola, estoy pasando por el middleware');
-    next();
+app.get('/', (req, res) => {
+    res.status(200).send('Llegué al endpoint!');
 });
 
 module.exports = app;

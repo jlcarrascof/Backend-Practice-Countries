@@ -1,9 +1,9 @@
 const { Router } = require('express');
 
-const usersRouter = Router();
+const postsRouter = Router();
 
-usersRouter.post('/users', (req, res) => {
+postsRouter.post('/users', (req, res) => {
     res.status(200).send('Crear un usuario');
 });
 
-module.exports = usersRouter;
+module.exports = postsRouter;

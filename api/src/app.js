@@ -5,8 +5,10 @@ const app = express();
 
 app.use(morgan('dev'));
 
-app.get('/', (req, res) => {
-    res.status(200).send('Llegué al endpoint!');
+app.get('/users', (req, res) => {
+    res.status(200).send('Aquí estarán los usuarios');
 });
+
+
 
 module.exports = app;

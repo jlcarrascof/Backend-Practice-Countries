@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const { getUsersHandler, getDetailHandler } = require('../handlers/usersHandlers');
 
 const usersRouter = Router();
 

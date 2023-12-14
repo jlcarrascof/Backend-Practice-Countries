@@ -1,11 +1,10 @@
-app.get('/users', (req, res) => {
-    res.status(200).send('Aquí estarán los usuarios');
-});
+const { Router } = require('express');
+const usersRouter = require('./usersRouter');
+const postsRouter = require('./postsRouter');
 
-app.get('/users/:id', (req, res) => {
-    res.status(200).send('Detalle del usuario');
-});
+const mainRouter = Router();
 
-app.post('/users', (req, res) => {
-    res.status(200).send('Crear un usuario');
-});
+mainRouter.use('/users', usersRouter);
+mainRouter.use('/posts', postsRouter);
+
+module.exports = mainRouter;

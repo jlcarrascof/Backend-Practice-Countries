@@ -1,17 +1,10 @@
 const { Router } = require('express');
+const usersRouter = require('./usersRouter');
+const postsRouter = require('./postsRouter');
 
 const mainRouter = Router();
 
-mainRouter.get('/users', (req, res) => {
-    res.status(200).send('Aquí estarán los usuarios');
-});
-
-mainRouter.get('/users/:id', (req, res) => {
-    res.status(200).send('Detalle del usuario');
-});
-
-mainRouter.post('/users', (req, res) => {
-    res.status(200).send('Crear un usuario');
-});
+mainRouter.use('/users', usersRouter);
+mainRouter.use('/posts', postsRouter);
 
 module.exports = mainRouter;

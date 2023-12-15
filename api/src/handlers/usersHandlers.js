@@ -4,7 +4,10 @@ const getUsersHandler = (req, res) => {
     // Unificar datos
     // Devolver la respuesta
     // Invoca al controller ---> El handler nunca interactua con fuentes externas de info (DB, API, etc)    
-    res.status(200).send('Aquí estarán los usuarios');
+    
+    const { name, race } = req.query;
+    if (name) res.status(200).send(`Aquí está el usuario ${name}`)
+    res.status(200).send(`Aquí están todos los usuarios`)
 };
 
 

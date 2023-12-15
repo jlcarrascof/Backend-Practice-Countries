@@ -10,7 +10,12 @@ const getDetailHandler = (req, res) => {
     res.status(200).send('Aquí estará el detalle del usuario');
 };
 
+const createUserHandler = (req, res) => {
+    res.status(200).send('Usuario creado');
+};
+
 module.exports = {
     getUsersHandler,
-    getDetailHandler
+    getDetailHandler,
+    createUserHandler 
 };

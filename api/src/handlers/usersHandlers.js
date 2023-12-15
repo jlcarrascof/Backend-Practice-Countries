@@ -1,3 +1,4 @@
+
 const getUsersHandler = (req, res) => { 
     // Recibir la request
     // Unificar datos
@@ -6,10 +7,14 @@ const getUsersHandler = (req, res) => {
     res.status(200).send('Aquí estarán los usuarios');
 };
 
+
+// id: => usa params
 const getDetailHandler = (req, res) => {
-    res.status(200).send('Aquí estará el detalle del usuario');
+    const { id } = req.params;
+    res.status(200).send(`Aquí estará el usuario con id ${id}`);
 };
 
+// body: => usa body
 const createUserHandler = (req, res) => {
     res.status(200).send('Usuario creado');
 };

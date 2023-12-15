@@ -1,8 +1,8 @@
 const { Router } = require('express');
-const { postUsersHandler } = require('../handlers/postsHandlers');
+const { createPostHandler } = require('../handlers/postsHandlers');
 
 const postRouter = Router();
 
-postRouter.post('/', postUsersHandler);
+postRouter.post('/', createPostHandler);
 
 module.exports = postRouter;

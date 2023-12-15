@@ -19,7 +19,8 @@ const getDetailHandler = (req, res) => {
 
 // body: => usa body
 const createUserHandler = (req, res) => {
-    res.status(200).send('Usuario creado');
+    const { name, email, phone } = req.body;
+    res.status(200).send(`Usuario ${name}, email ${email}  y teléfono ${phone} creado`);
 };
 
 module.exports = {

@@ -28,5 +28,6 @@ User.hasMany(Post);
 Post.belongsTo(User);
 
 module.exports = {
+  ...sequelize.models,
   conn: sequelize
 };

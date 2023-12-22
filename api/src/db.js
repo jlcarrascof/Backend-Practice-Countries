@@ -13,6 +13,19 @@ const sequelize = new Sequelize(
     {logging: false} // set to console.log to see the raw SQL queries
 ); 
 
+// Definir modelos a usar.
+UsersModel(sequelize);
+PostsModel(sequelize);
+
+// Crear las relaciones // asociaciones
+
+const { User, Post } = sequelize.models;
+
+// Un usuario tiene muchos posts
+User.hasMany(Post);
+
+// Un post pertenece a un usuario
+Post.belongsTo(User);
 
 module.exports = {
   conn: sequelize

@@ -1,3 +1,4 @@
+const { creatUserDB } = require("../controllers/usersController");
 
 const getUsersHandler = (req, res) => { 
     // Recibir la request
@@ -18,9 +19,16 @@ const getDetailHandler = (req, res) => {
 };
 
 // body: => usa body
-const createUserHandler = (req, res) => {
+const createUserHandler = async (req, res) => {
     const { name, email, phone } = req.body;
-    res.status(200).send(`Usuario ${name}, email ${email}  y teléfono ${phone} creado`);
+
+    try {
+        const response = await creatUserDB(name, email, phone);
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }
+
 };
 
 module.exports = {

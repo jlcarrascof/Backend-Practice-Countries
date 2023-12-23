@@ -29,7 +29,6 @@ const createUserHandler = async (req, res) => {
         res.status(400).json({error: error.message});
     }
 
-    res.status(200).send(`Usuario ${name}, email ${email}  y teléfono ${phone} creado`);
 };
 
 module.exports = {

@@ -8,14 +8,14 @@ const getUsersHandler = (req, res) => {
     
     const { name, race } = req.query;
     if (name) res.status(200).send(`Aquí está el usuario ${name}`)
-    res.status(200).send(`Aquí están todos los usuarios`)
+    res.status(200).send(`Todos los usuarios`)
 };
 
 
 // id: => usa params
 const getDetailHandler = (req, res) => {
     const { id } = req.params;
-    res.status(200).send(`Aquí estará el usuario con id ${id}`);
+    res.status(200).send(`Detalle del Usuario id ${id}`);
 };
 
 // body: => usa body

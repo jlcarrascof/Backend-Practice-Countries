@@ -13,8 +13,16 @@ const getUsersHandler = (req, res) => {
 
 
 // id: => usa params
-const getDetailHandler = (req, res) => {
+const getDetailHandler = async(req, res) => {
     const { id } = req.params;
+
+    try {
+        const response = await getUserById(id);
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }
+
     res.status(200).send(`Detalle del Usuario id ${id}`);
 };
 

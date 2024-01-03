@@ -18,8 +18,8 @@ const getDetailHandler = async(req, res) => {
 
     const source = isNaN(id) ? 'bdd' : 'api';
     try {
-        //const response = await getUserById(id);
-        //res.status(200).json(response);
+        const response = await getUserById(id, source);
+        res.status(200).json(response);
     } catch (error) {
         res.status(400).json({error: error.message});
     }

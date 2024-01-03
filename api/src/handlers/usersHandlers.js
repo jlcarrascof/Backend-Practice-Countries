@@ -15,7 +15,8 @@ const getUsersHandler = (req, res) => {
 // id: => usa params
 const getDetailHandler = async(req, res) => {
     const { id } = req.params;
-    console.log(Number(id));
+
+    const source = isNaN(id) ? 'bdd' : 'api';
     try {
         //const response = await getUserById(id);
         //res.status(200).json(response);

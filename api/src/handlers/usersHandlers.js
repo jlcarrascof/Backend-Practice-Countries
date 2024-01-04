@@ -8,14 +8,23 @@ const getUsersHandler = (req, res) => {
     
     const { name, race } = req.query;
     if (name) res.status(200).send(`Aquí está el usuario ${name}`)
-    res.status(200).send(`Aquí están todos los usuarios`)
+    res.status(200).send(`Todos los usuarios`)
 };
 
 
 // id: => usa params
-const getDetailHandler = (req, res) => {
+const getDetailHandler = async(req, res) => {
     const { id } = req.params;
-    res.status(200).send(`Aquí estará el usuario con id ${id}`);
+
+    const source = isNaN(id) ? 'bdd' : 'api';
+    try {
+        const response = await getUserById(id, source);
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }
+
+    res.status(200).send(`Detalle del Usuario id ${id}`);
 };
 
 // body: => usa body

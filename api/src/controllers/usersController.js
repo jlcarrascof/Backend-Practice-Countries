@@ -12,4 +12,20 @@ const getUserById = async (id, source) => {
     return user;
 } 
 
-module.exports = {creatUserDB, getUserById};
+// getAllUsers.
+
+const getAllUsers = async () => { 
+    const usersDB = await User.findAll();
+    const infoAPI = (await axios.get(`https://jsonplaceholder.typicode.com/users`)).data;
+    const clean = infoAPI.map((user) => {
+        return {
+            id: user.id,            
+            name: user.name,
+            email: user.email,
+            phone: user.phone
+        }
+    })
+    return [...usersDB, ...clean];  
+}
+
+module.exports = {creatUserDB, getUserById, getAllUsers};

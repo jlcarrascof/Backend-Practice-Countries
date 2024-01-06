@@ -1,14 +1,25 @@
-const { creatUserDB } = require("../controllers/usersController");
+const { creatUserDB, getUserById } = require("../controllers/usersController");
 
-const getUsersHandler = (req, res) => { 
+const getUsersHandler = async (req, res) => { 
     // Recibir la request
     // Unificar datos
     // Devolver la respuesta
     // Invoca al controller ---> El handler nunca interactua con fuentes externas de info (DB, API, etc)    
     
-    const { name, race } = req.query;
-    if (name) res.status(200).send(`Aquí está el usuario ${name}`)
-    res.status(200).send(`Todos los usuarios`)
+    const { name } = req.query;
+
+    try {
+        if (name) {
+            const userByName = await getUserByName(name);
+            res.status(200).json(userByName);
+        } else {
+            const response = await getAllUsers();
+            res.status(200).json(response);
+        }
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }    
+
 };
 
 
@@ -24,7 +35,6 @@ const getDetailHandler = async(req, res) => {
         res.status(400).json({error: error.message});
     }
 
-    res.status(200).send(`Detalle del Usuario id ${id}`);
 };
 
 // body: => usa body

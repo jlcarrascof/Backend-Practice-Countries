@@ -24,7 +24,6 @@ const getDetailHandler = async(req, res) => {
         res.status(400).json({error: error.message});
     }
 
-    // res.status(200).send(`Detalle del Usuario id ${id}`);
 };
 
 // body: => usa body

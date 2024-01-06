@@ -1,4 +1,4 @@
-const { creatUserDB } = require("../controllers/usersController");
+const { creatUserDB, getUserById } = require("../controllers/usersController");
 
 const getUsersHandler = (req, res) => { 
     // Recibir la request

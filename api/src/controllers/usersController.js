@@ -12,4 +12,4 @@ const getUserById = async (id, source) => {
     return user;
 } 
 
-module.exports = {creatUserDB};
+module.exports = {creatUserDB, getUserById};

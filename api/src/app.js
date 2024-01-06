@@ -1,5 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const mainRouter = require('./routes/mainRouter');
 const cors = require('cors');
 

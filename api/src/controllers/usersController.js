@@ -12,19 +12,22 @@ const getUserById = async (id, source) => {
     return user;
 } 
 
+const infoCleaner = (arr) => (arr.map((user) => {
+    return {
+        id: user.id,            
+        name: user.name,
+        email: user.email,
+        phone: user.phone
+    }
+}))
+
+
 // getAllUsers.
 
 const getAllUsers = async () => { 
     const usersDB = await User.findAll();
     const infoAPI = (await axios.get(`https://jsonplaceholder.typicode.com/users`)).data;
-    const clean = infoAPI.map((user) => {
-        return {
-            id: user.id,            
-            name: user.name,
-            email: user.email,
-            phone: user.phone
-        }
-    })
+    const clean = infoCleaner(infoAPI);
     return [...usersDB, ...clean];  
 }
 

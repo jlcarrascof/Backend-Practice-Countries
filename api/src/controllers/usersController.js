@@ -17,7 +17,8 @@ const infoCleaner = (arr) => (arr.map((user) => {
         id: user.id,            
         name: user.name,
         email: user.email,
-        phone: user.phone
+        phone: user.phone,
+        created: false
     }
 }))
 
@@ -27,8 +28,8 @@ const infoCleaner = (arr) => (arr.map((user) => {
 const getAllUsers = async () => { 
     const usersDB = await User.findAll();
     const infoAPI = (await axios.get(`https://jsonplaceholder.typicode.com/users`)).data;
-    const clean = infoCleaner(infoAPI);
-    return [...usersDB, ...clean];  
+    const userAPI = infoCleaner(infoAPI);
+    return [...usersDB, ...userAPI];  
 }
 
 module.exports = {creatUserDB, getUserById, getAllUsers};

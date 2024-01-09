@@ -12,7 +12,7 @@ const getUserById = async (id, source) => {
     return user;
 } 
 
-const infoCleaner = (arr) => (arr.map((user) => {
+const infoCleaner = (arr) => arr.map((user) => {
     return {
         id: user.id,            
         name: user.name,
@@ -20,7 +20,7 @@ const infoCleaner = (arr) => (arr.map((user) => {
         phone: user.phone,
         created: false
     }
-}))
+})
 
 
 // getAllUsers.

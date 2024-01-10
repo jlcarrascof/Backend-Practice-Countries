@@ -12,24 +12,42 @@ const getUserById = async (id, source) => {
     return user;
 } 
 
-const infoCleaner = (arr) => (arr.map((user) => {
+const infoCleaner = (array) => {
+    return array.map((element) => {
     return {
-        id: user.id,            
-        name: user.name,
-        email: user.email,
-        phone: user.phone,
+        id: element.id,            
+        name: element.name,
+        email: element.email,
+        phone: element.phone,
         created: false
     }
-}))
-
+})
+}
 
 // getAllUsers.
 
 const getAllUsers = async () => { 
     const usersDB = await User.findAll();
     const infoAPI = (await axios.get(`https://jsonplaceholder.typicode.com/users`)).data;
-    const userAPI = infoCleaner(infoAPI);
-    return [...usersDB, ...userAPI];  
+    const usersAPI = infoCleaner(infoAPI);
+    return [...usersDB, ...usersAPI];  
 }
 
-module.exports = {creatUserDB, getUserById, getAllUsers};
+// getUserByName.
+
+const getUserByName = async (name) => {
+    const infoAPI = (await axios.get(`https://jsonplaceholder.typicode.com/users`)).data;
+    const usersAPI = infoCleaner(infoAPI);
+
+    const userFiltered = usersAPI.filter((user) => user.name === name);
+
+    const userDB = await User.findAll({
+        where: {
+            name: name
+        }
+    }); 
+
+    return [...userDB, ...userFiltered];
+}
+
+module.exports = {creatUserDB, getUserById, getAllUsers, getUserByName};

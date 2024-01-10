@@ -12,16 +12,17 @@ const getUserById = async (id, source) => {
     return user;
 } 
 
-const infoCleaner = (arr) => arr.map((user) => {
+const infoCleaner = (array) => {
+    return array.map((element) => {
     return {
-        id: user.id,            
-        name: user.name,
-        email: user.email,
-        phone: user.phone,
+        id: element.id,            
+        name: element.name,
+        email: element.email,
+        phone: element.phone,
         created: false
     }
 })
-
+}
 
 // getAllUsers.
 
@@ -36,9 +37,9 @@ const getAllUsers = async () => {
 
 const getUserByName = async (name) => {
     const infoAPI = (await axios.get(`https://jsonplaceholder.typicode.com/users`)).data;
-    const userAPI = infoCleaner(infoAPI);
+    const usersAPI = infoCleaner(infoAPI);
 
-    const userFiltered = userAPI.filter(user => user.name === name);
+    const userFiltered = usersAPI.filter((user) => user.name === name);
 
     const userDB = await User.findAll({
         where: {
